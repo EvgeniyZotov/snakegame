@@ -5,9 +5,9 @@ import java.util.Random;
 
 public class GamePanel extends JPanel implements ActionListener {
 
-    static final int SCREEN_WIDTH = 600;
-    static final int SCREEN_HEIGHT = 600;
-    static final int UNIT_SIZE = 25;
+    static final int SCREEN_WIDTH = 1300;
+    static final int SCREEN_HEIGHT = 750;
+    static final int UNIT_SIZE = 50;
     static final int GAME_UNITS = (SCREEN_WIDTH * SCREEN_HEIGHT) / UNIT_SIZE;
     static final int DELAY = 75;
     final int[] x = new int[GAME_UNITS];
@@ -60,8 +60,7 @@ public class GamePanel extends JPanel implements ActionListener {
                     g.setColor(Color.green);
                     g.fillRect(x[i], y[i], UNIT_SIZE, UNIT_SIZE);
                 } else {
-                    //g.setColor(new Color(45, 180, 0));
-                    g.setColor(new Color(random.nextInt(255), random.nextInt(255), random.nextInt(255)));
+                    g.setColor(new Color(45, 180, 0));
                     g.fillRect(x[i], y[i], UNIT_SIZE, UNIT_SIZE);
                 }
             }
@@ -76,8 +75,8 @@ public class GamePanel extends JPanel implements ActionListener {
 
     }
     public void newApple() {
-        appleX = random.nextInt((int) (SCREEN_WIDTH / UNIT_SIZE)) * UNIT_SIZE;
-        appleY = random.nextInt((int) (SCREEN_HEIGHT / UNIT_SIZE)) * UNIT_SIZE;
+        appleX = random.nextInt((SCREEN_WIDTH / UNIT_SIZE)) * UNIT_SIZE;
+        appleY = random.nextInt((SCREEN_HEIGHT / UNIT_SIZE)) * UNIT_SIZE;
     }
 
     public void move() {
@@ -103,12 +102,11 @@ public class GamePanel extends JPanel implements ActionListener {
     }
 
     public void checkApple() {
-        if ((x[0] == appleX) && (y[0] == appleX)) {
+        if ((x[0] == appleX) && (y[0] == appleY)) {
             bodyParts++;
             applesEaten++;
             newApple();
         }
-
     }
 
     public void checkCollisions() {
